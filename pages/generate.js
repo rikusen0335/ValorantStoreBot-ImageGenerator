@@ -130,19 +130,20 @@ export const getServerSideProps = async (context) => {
       margin-top: 24px;
       margin-left: 32px;
       background: #273141;
-      padding: 2px 10px;
+      padding: 4px 10px;
       border: 1px solid #414B5B;
     }
     .cost_icon {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
     }
     .cost_amount {
-      margin-left: 4px;
-      font-size: 18px;
+      margin-left: 6px;
+      margin-bottom: 3px;
       letter-spacing: 1px;
       color: #f9fafb;
-      font-size: 20px;
+      font-size: 22px;
+      line-height: 22px;
       font-family: 'Noto Sans JP', sans-serif;
     }
 
