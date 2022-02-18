@@ -170,7 +170,7 @@ export const getServerSideProps = async (context) => {
       font-weight: bold;
       line-height: 1.5;
       color: #f9fafb;
-      font-size: 28px;
+      font-size: 32px;
       font-family: 'Noto Sans JP', sans-serif;
       margin-bottom: 32px;
     }
@@ -189,7 +189,7 @@ export const getServerSideProps = async (context) => {
   const page = await browser.newPage()
   await page.setContent(html)
 
-  await wait(1000 * 2);
+  // await wait(1000 * 2); // This is unnecessary now
 
   const buffer = await page.screenshot()
 
