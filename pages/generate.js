@@ -15,7 +15,7 @@ export const getServerSideProps = async (context) => {
   //   res.statusCode = 400
   //   res.end('Bad Request')
   //   return { props: {} }
-  }
+  // }
 
   const exePath = process.platform === 'win32'
     ? 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
