@@ -8,8 +8,7 @@ const Image = () => {
 
 
 export const getServerSideProps = async (context) => {
-//   const { title } = context.params
-  const title = "aaa"
+  const { weaponSkins } = context.req;
   const { res } = context;
 
   if (!title) {
@@ -46,87 +45,135 @@ export const getServerSideProps = async (context) => {
 
   const browser = await puppeteer.launch(options)
 
-  const html = `<html>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  const makeHtmlResult = () => {
+    /**
+     * [
+     *   {
+     *     imageUrl: string,
+     *     name: string,
+     *     cost: string.
+     *   }
+     * ]
+     */
+    return weaponSkins.map((skin) => `
+    <div class="weapon_skin">
+      <div class="cost">
+        <img class="cost_icon" src="https://media.valorant-api.com/currencies/85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741/largeicon.png" />
+        <p class="cost_amount">${skin.cost}</p>
+      </div>
+      <div class="skin_image_wrapper">
+        <img class="skin_image" src="${skin.imageUrl}" />
+      </div>
+      <p class="skin_name">${skin.name}</p>
+    </div>
+    `).join("")
+  }
 
-        <style>
-          body {
-            width: 1200px;
-            height: 675px;
-            max-width: 1200px;
-            max-height: 630px;
-            background-color: #f9fafb;
+  const html = `<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 
-            --bg-color: hsl(256, 33, 10);
-            --dot-color: hsl(256, 33, 70);
+  <style>
+    html {
+      background-color: #273141;
+    }
 
-            --dot-size: 1px;
-            --dot-space: 22px;
+    body {
+      width: 1200px;
+      height: 675px;
+      max-width: 1200px;
+      max-height: 675px;
+      border: 1px solid gray;
 
-            /*background:
-                  linear-gradient(90deg, var(--bg-color) (var(--dot-space) - var(--dot-size)), transparent 1%) center,
-                  linear-gradient(var(--bg-color) (var(--dot-space) - var(--dot-size)), transparent 1%) center,
-                  var(--dot-color);
-                background-size: var(--dot-space) var(--dot-space);*/
+      background-color: #273141;
+      background-size: 22px 22px;
+    }
 
-            background: linear-gradient(90deg, #fff 21px, transparent 4%) center, linear-gradient(#fff 21px, transparent 4%) center, #a799cc;
-            background-size: 22px 22px;
-          }
+    p {
+      margin: 0;
+    }
 
-          .container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-          }
+    .container {
+      width: 100%;
+      height: 100%;
+      /* position: relative; */
+      background-color: #273141;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0px 0px;
+      grid-template-areas:
+        ". ."
+        ". .";
+    }
 
-          .title {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            width: 80%;
-            height: 100%;
-            margin: auto;
-            color: #273141;
-            font-size: 60px;
-            font-weight: bold;
-            line-height: 1.5;
-            font-family: 'Noto Sans JP', sans-serif;
-          }
+    .weapon_skin {
+      margin: 16px;
+      position: relative;
+    }
 
-          .site-name {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            color: #111;
-            font-family:
-              system-ui,
-              -apple-system,
-              'Segoe UI',
-              Roboto,
-              Helvetica,
-              Arial,
-              sans-serif,
-              'Apple Color Emoji',
-              'Segoe UI Emoji';
-            font-weight: bold;
-            font-size: 50px;
-            margin-top: auto;
-            margin-bottom: 20px;
-            margin-right: 40px;
-          }
-        </style>
-      </head>
+    .cost {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top: 0;
+      left: 0;
+      margin-top: 24px;
+      margin-left: 32px;
+      background: #273141;
+      padding: 2px 10px;
+      border: 1px solid #414B5B;
+    }
+    .cost_icon {
+      width: 24px;
+      height: 24px;
+    }
+    .cost_amount {
+      margin-left: 4px;
+      font-size: 18px;
+      letter-spacing: 1px;
+      color: #f9fafb;
+      font-size: 20px;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
 
-      <body>
-        <div class="container">
-          <div class="title">${title}</div>
-          <p class="site-name">${COOL_SITE_NAME}</p>
-        </div>
-      </body>
+    .skin_image_wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 90%;
+      object-fit: contain;
+    }
+    .skin_image {
+      margin: auto;
+      object-fit: contain;
+    }
+    .skin_name {
+      position: absolute;
+      text-align: center;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: auto;
+      font-weight: bold;
+      line-height: 1.5;
+      color: #f9fafb;
+      font-size: 28px;
+      font-family: 'Noto Sans JP', sans-serif;
+      margin-bottom: 32px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    ${makeHtmlResult()}
+  </div>
+</body>
     </html>`
 
   const page = await browser.newPage()
