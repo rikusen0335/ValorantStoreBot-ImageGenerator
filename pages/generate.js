@@ -194,7 +194,7 @@ export const getServerSideProps = async (context) => {
     res.setHeader('Content-Type', 'image/png')
     res.setHeader('Cache-Control', 'public, immutable, no-transform, s-maxage=31536000, max-age=31536000')
     res.end(buffer, 'binary')
-  }, 1000 * 10)())
+  })(), 1000 * 10)
 
   return { props: {} }
 }
