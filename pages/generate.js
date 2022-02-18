@@ -189,7 +189,7 @@ export const getServerSideProps = async (context) => {
   const page = await browser.newPage()
   await page.setContent(html)
 
-  await wait(1000 * 10);
+  await wait(1000 * 4);
 
   const buffer = await page.screenshot()
 
