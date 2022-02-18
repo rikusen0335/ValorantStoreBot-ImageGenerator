@@ -186,7 +186,11 @@ export const getServerSideProps = async (context) => {
 
   const page = await browser.newPage()
   await page.setContent(html)
-  const buffer = await page.screenshot()
+  let buffer;
+
+  setTimeout(async () => {
+    buffer = await page.screenshot()
+  }, 1000 * 5)
 
   res.setHeader('Content-Type', 'image/png')
   res.setHeader('Cache-Control', 'public, immutable, no-transform, s-maxage=31536000, max-age=31536000')
