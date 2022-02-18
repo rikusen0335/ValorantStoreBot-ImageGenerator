@@ -8,7 +8,8 @@ const Image = () => {
 
 
 export const getServerSideProps = async (context) => {
-  const { title } = context.params
+//   const { title } = context.params
+  const title = "aaa"
   const { res } = context;
 
   if (!title) {
