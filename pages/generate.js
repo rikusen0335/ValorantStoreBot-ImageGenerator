@@ -82,16 +82,12 @@ export const getServerSideProps = async (context) => {
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    html {
-      background-color: #273141;
-    }
-
     body {
       width: 1200px;
       height: 630px;
       max-width: 1200px;
       max-height: 630px;
-      border: 1px solid gray;
+      margin: 0;
 
       background-color: #273141;
       background-size: 22px 22px;
@@ -102,6 +98,7 @@ export const getServerSideProps = async (context) => {
     }
 
     .container {
+      border: 1px solid gray;
       width: 100%;
       height: 100%;
       /* position: relative; */
