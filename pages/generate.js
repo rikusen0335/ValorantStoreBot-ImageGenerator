@@ -1,6 +1,7 @@
 
 import chromium from 'chrome-aws-lambda'
 import puppeteer from 'puppeteer-core'
+import getRawBody from 'raw-body';
 
 const Image = () => {
   return <></>
@@ -8,7 +9,7 @@ const Image = () => {
 
 
 export const getServerSideProps = async (context) => {
-  const { weaponSkins } = context.req;
+  // const { weaponSkins } = context.req;
   const { res } = context;
 
   // if (!title) {
@@ -17,7 +18,11 @@ export const getServerSideProps = async (context) => {
   //   return { props: {} }
   // }
 
-  console.log(context.req)
+  // Reference: https://github.com/vercel/next.js/discussions/14979
+  const body = await getRawBody(context.req)
+  const { weaponSkins } = JSON.parse(body.toString("utf-8"))
+
+  // console.log(context.req)
 
   const exePath = process.platform === 'win32'
     ? 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
