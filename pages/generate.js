@@ -184,17 +184,18 @@ export const getServerSideProps = async (context) => {
 </body>
     </html>`
 
+  const wait = async (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
   const page = await browser.newPage()
   await page.setContent(html)
-  // let buffer;
 
-  setTimeout((async () => {
-    const buffer = await page.screenshot()
+  await wait(1000 * 10);
 
-    res.setHeader('Content-Type', 'image/png')
-    res.setHeader('Cache-Control', 'public, immutable, no-transform, s-maxage=31536000, max-age=31536000')
-    res.end(buffer, 'binary')
-  })(), 1000 * 10)
+  const buffer = await page.screenshot()
+
+  res.setHeader('Content-Type', 'image/png')
+  res.setHeader('Cache-Control', 'public, immutable, no-transform, s-maxage=31536000, max-age=31536000')
+  res.end(buffer, 'binary')
 
   return { props: {} }
 }
