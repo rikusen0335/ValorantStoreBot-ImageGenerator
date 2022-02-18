@@ -17,6 +17,8 @@ export const getServerSideProps = async (context) => {
   //   return { props: {} }
   // }
 
+  console.log(context.req)
+
   const exePath = process.platform === 'win32'
     ? 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
     : process.platform === 'linux'
