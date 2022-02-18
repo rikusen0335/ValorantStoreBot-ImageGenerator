@@ -88,9 +88,9 @@ export const getServerSideProps = async (context) => {
 
     body {
       width: 1200px;
-      height: 675px;
+      height: 630px;
       max-width: 1200px;
-      max-height: 675px;
+      max-height: 630px;
       border: 1px solid gray;
 
       background-color: #273141;
