@@ -11,10 +11,10 @@ export const getServerSideProps = async (context) => {
   const { weaponSkins } = context.req;
   const { res } = context;
 
-  if (!title) {
-    res.statusCode = 400
-    res.end('Bad Request')
-    return { props: {} }
+  // if (!title) {
+  //   res.statusCode = 400
+  //   res.end('Bad Request')
+  //   return { props: {} }
   }
 
   const exePath = process.platform === 'win32'
