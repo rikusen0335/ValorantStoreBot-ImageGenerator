@@ -102,7 +102,7 @@ export const getServerSideProps = async (context) => {
     }
 
     .container {
-      border: 1px solid gray;
+      /* border: 1px solid gray; */
       width: 100%;
       height: 100%;
       /* position: relative; */
@@ -189,7 +189,7 @@ export const getServerSideProps = async (context) => {
   const page = await browser.newPage()
   await page.setContent(html)
 
-  await wait(1000 * 4);
+  await wait(1000 * 2);
 
   const buffer = await page.screenshot()
 
