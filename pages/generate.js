@@ -103,13 +103,13 @@ export const getServerSideProps = async (context) => {
 
     .container {
       /* border: 1px solid gray; */
-      width: 100%;
-      height: 100%;
+      width: 1200px;
+      height: 630px;
       /* position: relative; */
       background-color: #273141;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: repeat(2, 600px);
+      grid-template-rows: repeat(2, 315px);
       gap: 0px 0px;
       grid-template-areas:
         ". ."
@@ -152,12 +152,13 @@ export const getServerSideProps = async (context) => {
       justify-content: center;
       align-items: center;
       width: 100%;
-      height: 90%;
-      object-fit: contain;
+      height: 100%;
+      object-fit: cover;
     }
     .skin_image {
+      max-height: 230px;
       margin: auto;
-      object-fit: contain;
+      object-fit: cover;
     }
     .skin_name {
       position: absolute;
@@ -174,6 +175,7 @@ export const getServerSideProps = async (context) => {
       font-size: 32px;
       font-family: 'Noto Sans JP', sans-serif;
       margin-bottom: 32px;
+      background-color: #27314170;
     }
   </style>
 </head>
